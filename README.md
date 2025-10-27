@@ -33,7 +33,20 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+### Executar Testes
+```bash
+# simples
+pytest
 
+# Mostra cada teste
+pytest -v
+
+# Com saída do print
+pytest -s
+
+# Teste específico
+pytest tests/test_calculations.py
+```
 ## Estrutura do Projeto
 
 ```
