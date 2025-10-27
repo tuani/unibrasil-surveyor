@@ -38,42 +38,21 @@ python main.py
 
 ```
 unibrasil-surveyor/
-├── src/                    # Código fonte modular
+├── src/                   # Código fonte modular
 │   ├── core/              # Módulos principais
-│   ├── algorithms/        # Algoritmo genético híbrido
+│   ├── algorithms/        # Algoritmo genético 
 │   ├── utils/             # Utilitários
 │   └── visualization/     # Visualização
 ├── data/                  # Dados dos CEPs
 ├── output/                # Arquivos gerados
-├── main.py               # Script principal
-└── requirements.txt      # Dependências
+├── main.py                # Script principal
+└── requirements.txt       # Dependências
 ```
-
-## Algoritmo Genético Híbrido
-
-### Estratégias Híbridas
-- **Inicialização**: 20% vizinho mais próximo + 80% aleatório
-- **Mutação**: 30% chance de usar vizinho mais próximo
-- **Otimização**: Velocidades e bateria calculados inteligentemente
-
-### Parâmetros
-- População: 100 indivíduos
-- Gerações: 200
-- Taxa de mutação: 10%
-- Taxa de crossover: 80%
-- Elitismo: 10 melhores indivíduos
-
-### Vantagens
-- **Performance Superior**: 79% melhor que genético tradicional
-- **Convergência Rápida**: Fitness inicial muito melhor
-- **Qualidade Garantida**: Combina força de ambos algoritmos
-- **Robustez**: Mantém diversidade genética
 
 ## Arquivos Gerados
 
 - `output/roteiro_otimizado_DDMMHHMMSS.csv`: Rota otimizada em formato CSV
 - `output/roteiro_visualizacao_DDMMHHMMSS.png`: Visualização gráfica da rota
-- `output/relatorio_DDMMHHMMSS.txt`: Relatório de resumo
 
 ## Requisitos do Sistema
 

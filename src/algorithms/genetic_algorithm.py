@@ -1,5 +1,6 @@
 import random
 from typing import List, Tuple
+from tqdm import tqdm
 from ..utils.data_manager import GerenciadorDados
 from ..core.validator import ValidadorSolucao
 from ..core.cost_calculator import CalculadorCusto
@@ -268,7 +269,7 @@ class AlgoritmoGenetico:
         melhor_individuo = None
         melhor_fitness = float('inf')
         
-        for geracao in range(self.generations):
+        for geracao in tqdm(range(self.generations), desc="Otimizando rota", unit="geração"):
             fitness_scores = []
             for individuo in populacao:
                 eh_valida, _ = self.validador.validar_solucao_ids(*individuo)
@@ -304,9 +305,6 @@ class AlgoritmoGenetico:
                 nova_populacao.extend([filho1, filho2])
             
             populacao = nova_populacao[:self.population_size]
-            
-            if geracao % 20 == 0:
-                print(f"Geração {geracao}: Melhor fitness = {melhor_fitness:.2f}")
         
         if melhor_individuo is None:
             melhor_individuo = populacao[0]
