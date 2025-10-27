@@ -31,18 +31,13 @@ class OtimizadorDrone:
                         tempos_pouso: List[bool], fitness: float):
         timestamp = datetime.now().strftime("%d%m%H%M%S")
         
-        custo, info = self.calculador_custo.calcular_custo_rota(rota, velocidades, tempos_pouso)
+        _, info = self.calculador_custo.calcular_custo_rota(rota, velocidades, tempos_pouso)
         info_rota = info["route_info"]
-        tempo_total = info["total_time"]
-        custo_pousos = info["total_cost"]
         
         arquivo_csv = f"output/roteiro_otimizado_{timestamp}.csv"
         arquivo_png = f"output/roteiro_visualizacao_{timestamp}.png"
-        arquivo_relatorio = f"output/relatorio_{timestamp}.txt"
         
         self.gerador_relatorio.gerar_csv_rota(rota, velocidades, tempos_pouso, info_rota, arquivo_csv)
         self.plotador_rota.plotar_rota(rota, arquivo_png)
-        self.gerador_relatorio.gerar_relatorio_resumo(rota, velocidades, tempos_pouso, 
-                                                     fitness, tempo_total, custo_pousos, arquivo_relatorio)
         
-        return arquivo_csv, arquivo_png, arquivo_relatorio
+        return arquivo_csv, arquivo_png
