@@ -70,8 +70,7 @@ unibrasil-surveyor/
 ## Requisitos do Sistema
 
 - Python 3.7+
-- Linux (nativo)
-- Bibliotecas: numpy, matplotlib
+- Bibliotecas: numpy, matplotlib, pytest, tqdm
 
 ## Autor
 
