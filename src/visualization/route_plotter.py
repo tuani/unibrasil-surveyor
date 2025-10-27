@@ -17,9 +17,9 @@ class PlotadorRota:
         plt.scatter(todas_lons, todas_lats, c='blue', s=20, alpha=0.6, label='CEPs')
         
         unibrasil_lat, unibrasil_lon = self.unibrasil_coords
-        plt.scatter(unibrasil_lon, unibrasil_lat, c='red', s=100, marker='o', label='Unibrasil')
-        plt.annotate('N', (unibrasil_lon, unibrasil_lat), ha='center', va='center', 
-                    color='white', fontsize=12, fontweight='bold')
+        plt.scatter(unibrasil_lon, unibrasil_lat, c='red', s=300, marker='o', label='Unibrasil', zorder=10)
+        plt.annotate('N', xy=(unibrasil_lon, unibrasil_lat), ha='center', va='center', 
+                    color='white', fontsize=10, fontweight='bold')
         
         lats_rota = [self.gerenciador_dados.obter_coords_cep(cep)[0] for cep in rota]
         lons_rota = [self.gerenciador_dados.obter_coords_cep(cep)[1] for cep in rota]
