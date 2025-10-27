@@ -1,3 +1,1 @@
-from .drone_optimizer import OtimizadorDrone
-
-__all__ = ['OtimizadorDrone']
+__all__ = ['drone_optimizer']
