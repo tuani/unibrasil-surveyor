@@ -2,17 +2,6 @@
 
 Sistema de otimização de roteiro para drone autônomo usando algoritmo genético híbrido para mapear CEPs em Curitiba.
 
-## Características
-
-- **Algoritmo Genético Híbrido** com estratégia do vizinho mais próximo
-- Cálculo de distância usando fórmula de Haversine
-- Modelo meteorológico com dados de vento
-- Gestão de autonomia baseada na velocidade
-- Validação robusta de soluções
-- Visualização de rotas otimizadas
-- Geração de relatórios em CSV
-- Sistema de IDs fictícios para otimização de memória
-
 ## Instalação
 
 1. Instale as dependências:
