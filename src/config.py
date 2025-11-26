@@ -16,7 +16,7 @@ OPERATION_CONFIG = {
 
 GENETIC_CONFIG = {
     'population_size': 100,
-    'generations': 200,
+    'generations': 80,
     'mutation_rate': 0.1,
     'crossover_rate': 0.8,
     'elite_size': 10,
