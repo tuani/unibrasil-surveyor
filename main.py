@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-from src.core.drone_optimizer import OtimizadorDrone
+from src.core.drone_optimizer import GerenciadorRota
 
 def main():
     csv_file = "data/coordenadas.csv"
@@ -10,10 +10,10 @@ def main():
         return 1
     
     try:
-        otimizador = OtimizadorDrone(csv_file)
-        rota, velocidades, tempos_pouso, fitness = otimizador.executar_otimizacao()
-        otimizador.gerar_relatorios(rota, velocidades, tempos_pouso, fitness)
-        print(f"Otimização concluída! Fitness: {fitness:.0f}")
+        gerenciador = GerenciadorRota(csv_file)
+        rota, velocidades, tempos_pouso, fitness = gerenciador.executar()
+        gerenciador.gerar_relatorios(rota, velocidades, tempos_pouso, fitness)
+        print(f"Rota gerada! Fitness: {fitness:.0f}")
         return 0
     except Exception as e:
         print(f"ERRO: {e}")

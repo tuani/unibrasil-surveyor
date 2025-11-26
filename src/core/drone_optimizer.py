@@ -8,7 +8,7 @@ from ..utils.report_generator import GeradorRelatorio
 from ..visualization.route_plotter import PlotadorRota
 from ..config import DRONE_CONFIG, OPERATION_CONFIG
 
-class OtimizadorDrone:
+class GerenciadorRota:
     def __init__(self, csv_file: str = "data/coordenadas.csv"):
         self.gerenciador_dados = GerenciadorDados(csv_file)
         self.validador = ValidadorSolucao(self.gerenciador_dados)
@@ -22,7 +22,7 @@ class OtimizadorDrone:
         self.drone_config = DRONE_CONFIG
         self.operation_config = OPERATION_CONFIG
     
-    def executar_otimizacao(self) -> Tuple[List[str], List[int], List[bool], float]:
+    def executar(self) -> Tuple[List[str], List[int], List[bool], float]:
         rota_ids, velocidades, tempos_pouso, fitness = self.algoritmo_genetico.executar()
         rota_ceps = self.gerenciador_dados.converter_rota_para_ceps(rota_ids)
         return rota_ceps, velocidades, tempos_pouso, fitness
@@ -34,7 +34,7 @@ class OtimizadorDrone:
         _, info = self.calculador_custo.calcular_custo_rota(rota, velocidades, tempos_pouso)
         info_rota = info["route_info"]
         
-        arquivo_csv = f"output/roteiro_otimizado_{timestamp}.csv"
+        arquivo_csv = f"output/roteiro_{timestamp}.csv"
         arquivo_png = f"output/roteiro_visualizacao_{timestamp}.png"
         
         self.gerador_relatorio.gerar_csv_rota(rota, velocidades, tempos_pouso, info_rota, arquivo_csv)

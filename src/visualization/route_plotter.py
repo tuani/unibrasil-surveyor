@@ -9,51 +9,46 @@ class PlotadorRota:
         self.unibrasil_coords = gerenciador_dados.unibrasil_coords
     
     def plotar_rota(self, rota: List[str], arquivo_saida: str):
-        plt.figure(figsize=(12, 10))
+        try:
+            plt.style.use('seaborn-v0_8-darkgrid')
+        except:
+            try:
+                plt.style.use('seaborn-darkgrid')
+            except:
+                plt.style.use('default')
         
-        todos_ceps = self.gerenciador_dados.obter_todos_ceps()
-        todas_lats = [coords[0] for coords in todos_ceps.values()]
-        todas_lons = [coords[1] for coords in todos_ceps.values()]
-        plt.scatter(todas_lons, todas_lats, c='blue', s=20, alpha=0.6, label='CEPs')
-        
-        unibrasil_lat, unibrasil_lon = self.unibrasil_coords
-        plt.scatter(unibrasil_lon, unibrasil_lat, c='red', s=300, marker='o', label='Unibrasil', zorder=10)
-        plt.annotate('N', xy=(unibrasil_lon, unibrasil_lat), ha='center', va='center', 
-                    color='white', fontsize=10, fontweight='bold')
+        fig, ax = plt.subplots(figsize=(14, 11))
+        fig.patch.set_facecolor('white')
+        ax.set_facecolor('#f8f9fa')
         
         lats_rota = [self.gerenciador_dados.obter_coords_cep(cep)[0] for cep in rota]
         lons_rota = [self.gerenciador_dados.obter_coords_cep(cep)[1] for cep in rota]
-        plt.plot(lons_rota, lats_rota, 'b-', linewidth=2, alpha=0.8)
         
-        plt.scatter(lons_rota, lats_rota, c='green', s=30, alpha=0.8)
+        ax.plot(lons_rota, lats_rota, color='#0d6efd', linewidth=2.5, 
+               alpha=0.7, zorder=2, label='Rota do Drone')
         
-        plt.xlabel('Longitude')
-        plt.ylabel('Latitude')
-        plt.title('Rota Otimizada do Drone UNIBRASIL Surveyor')
-        plt.legend()
-        plt.grid(True, alpha=0.3)
+        ax.scatter(lons_rota[1:-1], lats_rota[1:-1], c='#198754', s=40, 
+                  alpha=0.8, edgecolors='white', linewidths=1, zorder=3, label='Pontos Visitados')
+        
+        unibrasil_lat, unibrasil_lon = self.unibrasil_coords
+        ax.scatter(unibrasil_lon, unibrasil_lat, c='#dc3545', s=400, 
+                  marker='*', label='Unibrasil', zorder=10, 
+                  edgecolors='white', linewidths=2)
+        
+        ax.set_xlabel('Longitude', fontsize=12, fontweight='bold')
+        ax.set_ylabel('Latitude', fontsize=12, fontweight='bold')
+        ax.set_title('Rota do Drone UNIBRASIL Surveyor', 
+                    fontsize=16, fontweight='bold', pad=20)
+        
+        ax.legend(loc='upper right', frameon=True, fancybox=True, 
+                 shadow=True, fontsize=10, framealpha=0.95)
+        
+        ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['left'].set_color('#dee2e6')
+        ax.spines['bottom'].set_color('#dee2e6')
+        
         plt.tight_layout()
-        plt.savefig(arquivo_saida, dpi=300, bbox_inches='tight')
-        plt.close()
-    
-    def plotar_evolucao_fitness(self, historico_fitness: List[float], arquivo_saida: str):
-        plt.figure(figsize=(10, 6))
-        plt.plot(historico_fitness)
-        plt.xlabel('Geração')
-        plt.ylabel('Fitness (Custo)')
-        plt.title('Evolução do Fitness - Algoritmo Genético')
-        plt.grid(True, alpha=0.3)
-        plt.tight_layout()
-        plt.savefig(arquivo_saida, dpi=300, bbox_inches='tight')
-        plt.close()
-    
-    def plotar_distribuicao_velocidades(self, velocidades: List[int], arquivo_saida: str):
-        plt.figure(figsize=(10, 6))
-        plt.hist(velocidades, bins=20, alpha=0.7, edgecolor='black')
-        plt.xlabel('Velocidade (km/h)')
-        plt.ylabel('Frequência')
-        plt.title('Distribuição de Velocidades na Rota Otimizada')
-        plt.grid(True, alpha=0.3)
-        plt.tight_layout()
-        plt.savefig(arquivo_saida, dpi=300, bbox_inches='tight')
+        plt.savefig(arquivo_saida, dpi=300, bbox_inches='tight', facecolor='white')
         plt.close()
