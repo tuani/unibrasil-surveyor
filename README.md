@@ -68,40 +68,10 @@ unibrasil-surveyor/
 └── requirements.txt       # Dependências
 ```
 
-## Algoritmos Utilizados
-
-### Algoritmo Genético
-- **População**: 100 indivíduos
-- **Gerações**: 80
-- **Estratégia Híbrida**: 
-  - 20% da população inicial usa heurística de vizinho mais próximo
-  - 80% da população inicial é gerada aleatoriamente
-- **Operadores**: Crossover (80%), Mutação (10%), Seleção por torneio
-- **Elite**: 10 melhores indivíduos preservados
-
-### Algoritmo 2-opt
-- Remove cruzamentos na rota final
-- Garante rota sem interseções
-- Aplicado de forma probabilística durante a evolução
-- Aplicação final robusta com até 10000 iterações
-
-### Heurística de Vizinho Mais Próximo
-- Usada na inicialização (20% da população)
-- Usada em 30% das mutações
-- Gera rotas de boa qualidade inicial
-
 ## Arquivos Gerados
 
 - `output/roteiro_DDMMHHMMSS.csv`: Rota gerada em formato CSV com detalhes de cada trecho
 - `output/roteiro_visualizacao_DDMMHHMMSS.png`: Visualização gráfica da rota no mapa
-
-### Formato do CSV
-O arquivo CSV contém informações sobre cada trecho da rota:
-- CEP inicial e final
-- Coordenadas (latitude/longitude)
-- Dia, hora, minuto e segundo de início e fim
-- Velocidade do drone
-- Informação sobre pouso (landing)
 
 ## Requisitos do Sistema
 
