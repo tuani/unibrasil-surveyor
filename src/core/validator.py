@@ -50,35 +50,3 @@ class ValidadorSolucao:
             return False, "CEPs duplicados na rota"
         
         return True, "Solução válida"
-    
-    def validar_bateria(self, rota: List[str], velocidades: List[int], 
-                       tempos_pouso: List[bool]) -> Tuple[bool, str]:
-        eh_valida, mensagem = self.validar_solucao(rota, velocidades, tempos_pouso)
-        if not eh_valida:
-            return False, mensagem
-        
-        return True, "Bateria suficiente"
-    
-    def validar_bateria_ids(self, rota_ids: List[int], velocidades: List[int], 
-                           tempos_pouso: List[bool]) -> Tuple[bool, str]:
-        eh_valida, mensagem = self.validar_solucao_ids(rota_ids, velocidades, tempos_pouso)
-        if not eh_valida:
-            return False, mensagem
-        
-        return True, "Bateria suficiente"
-    
-    def validar_restricoes_tempo(self, rota: List[str], velocidades: List[int], 
-                               tempos_pouso: List[bool]) -> Tuple[bool, str]:
-        eh_valida, mensagem = self.validar_solucao(rota, velocidades, tempos_pouso)
-        if not eh_valida:
-            return False, mensagem
-        
-        return True, "Horários válidos"
-    
-    def validar_restricoes_tempo_ids(self, rota_ids: List[int], velocidades: List[int], 
-                                   tempos_pouso: List[bool]) -> Tuple[bool, str]:
-        eh_valida, mensagem = self.validar_solucao_ids(rota_ids, velocidades, tempos_pouso)
-        if not eh_valida:
-            return False, mensagem
-        
-        return True, "Horários válidos"

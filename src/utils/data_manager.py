@@ -53,38 +53,17 @@ class GerenciadorDados:
     def obter_coords_cep(self, cep: str) -> Tuple[float, float]:
         return self.ceps.get(cep, (0, 0))
     
-    def obter_todos_ids(self) -> List[int]:
-        return self.mapeador_id.obter_todos_ids()
+    def obter_cep_por_id(self, id_cep: int) -> str:
+        return self.mapeador_id.obter_cep_id(id_cep)
     
     def obter_ids_excluindo_unibrasil(self) -> List[int]:
         return self.mapeador_id.obter_ids_excluindo_unibrasil()
     
-    def obter_quantidade_ids(self) -> int:
-        return self.mapeador_id.obter_quantidade_ids()
-    
-    def eh_id_unibrasil(self, id_cep: int) -> bool:
-        return self.mapeador_id.eh_id_unibrasil(id_cep)
-    
     def obter_id_unibrasil(self) -> int:
         return self.mapeador_id.obter_id_unibrasil()
-    
-    def converter_rota_para_ids(self, rota_ceps: List[str]) -> List[int]:
-        return self.mapeador_id.converter_rota_para_ids(rota_ceps)
     
     def converter_rota_para_ceps(self, rota_ids: List[int]) -> List[str]:
         return self.mapeador_id.converter_rota_para_ceps(rota_ids)
     
-    def obter_cep_por_id(self, id_cep: int) -> str:
-        return self.mapeador_id.obter_cep_id(id_cep)
-    
-    def obter_id_por_cep(self, cep: str) -> int:
-        return self.mapeador_id.obter_id_cep(cep)
-    
     def obter_todos_ceps(self) -> Dict[str, Tuple[float, float]]:
         return self.ceps.copy()
-    
-    def obter_quantidade_ceps(self) -> int:
-        return len(self.ceps)
-    
-    def eh_cep_unibrasil(self, cep: str) -> bool:
-        return cep == self.unibrasil_cep
