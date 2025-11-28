@@ -1,5 +1,6 @@
 from typing import List, Tuple
 from datetime import datetime
+import os
 from ..utils.data_manager import GerenciadorDados
 from ..core.validator import ValidadorSolucao
 from ..core.cost_calculator import CalculadorCusto
@@ -30,6 +31,8 @@ class GerenciadorRota:
     def gerar_relatorios(self, rota: List[str], velocidades: List[int], 
                         tempos_pouso: List[bool], fitness: float):
         timestamp = datetime.now().strftime("%d%m%H%M%S")
+        
+        os.makedirs("output", exist_ok=True)
         
         _, info = self.calculador_custo.calcular_custo_rota(rota, velocidades, tempos_pouso)
         info_rota = info["route_info"]
